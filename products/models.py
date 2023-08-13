@@ -16,6 +16,9 @@ class Category(models.Model):
         db_table = 'categories'
         verbose_name = _('Categories')
         verbose_name_plural = _('Categories')
+        
+    def __str__(self):
+        return self.title
     
 class Product(models.Model):
     title = models.CharField(_('title'), max_length=50)
@@ -26,6 +29,9 @@ class Product(models.Model):
     created_time = models.DateTimeField(_('created_time'),auto_now_add=True)
     updated_time = models.DateTimeField(_('updated_time'),auto_now_add=True)
     
+    def __str__(self):
+        return self.title
+    
     class Meta:
         db_table = 'products'
         verbose_name = _('product')
@@ -34,9 +40,19 @@ class Product(models.Model):
     
 
 class File(models.Model):
-    product = models.ForeignKey('Product', verbose_name=_('prosuct'), on_delete=models.CASCADE)
+    FILE_AUDIO = 1
+    FILE_VIDEO = 2
+    FILE_PDF = 3
+    FILE_TYPES = (
+        (FILE_AUDIO,  _('audio')),
+        (FILE_PDF,_('pdf')),
+        (FILE_VIDEO, _('video'))
+    )
+    
+    product = models.ForeignKey('Product', verbose_name=_('prosuct'),related_name='files', on_delete=models.CASCADE)
     title = models.CharField(_('title'),max_length=50)
     file = models.FileField(_('file'), upload_to='files/%Y/%m/%d/')
+    file_type = models.IntegerField(_('file type'), choices= FILE_TYPES, default=2)
     created_time = models.DateTimeField(_('created_time'),auto_now_add=True)
     updated_time = models.DateTimeField(_('updated_time'),auto_now_add=True)
     is_enable = models.BooleanField(_('is_enable'),default=True)
@@ -46,3 +62,6 @@ class File(models.Model):
         db_table = 'files'
         verbose_name = _('file')
         verbose_name_plural = _('files')
+        
+    def __str__(self):
+        return self.title
