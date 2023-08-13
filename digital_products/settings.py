@@ -24,10 +24,13 @@ INSTALLED_APPS = [
     
     'rest_framework',
     'rest_framework_simplejwt',
+    'import_export',
     
     'products',
     'users',
-]
+    'payments',
+    'subscriptions'
+    ]
 
 rest_framework = ['rest_framework']
 
@@ -97,6 +100,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
+STATIC_ROOT = 'static'
 
 #media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
