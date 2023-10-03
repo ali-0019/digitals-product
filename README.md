@@ -85,13 +85,11 @@ $  cd digitals-product
 $  pip install -r requirements.txt
 ```
 
-**5. Add the hosts**
+**5. Add the settings**
 
-- Got to settings.py file 
-- Then, On allowed hosts, Add [‘*’]. 
-```python
-ALLOWED_HOSTS = ['*']
-```
+- Got to settings.py file
+- create file like local_settings.py.example
+
 *No need to change on Mac.*
 
 
